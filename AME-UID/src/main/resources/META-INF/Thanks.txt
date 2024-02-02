@@ -1,0 +1,3 @@
+感谢百度提供的开源代码：https://gitee.com/baidu/uid-generator。
+本项目基于此项目修改了spring boot相关版本依赖以及重新引用了所有依赖。
+包名从com.baidu->com.ame.meperframework。

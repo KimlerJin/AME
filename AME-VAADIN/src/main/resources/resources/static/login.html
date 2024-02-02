@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登录</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="css/login.css" type="text/css"/>
+    <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+    <script src="../lib/js/jquery.min.js"></script>
+    <script src="../lib/js/jquery.cookie.js"></script>
+    <script src="js/common/messageBox.js"></script>
+    <script src="js/public.js"></script>
+    <script src="js/login/login.js"></script>
+    <style>
+        .knobs, .layer
+        {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .knobs{
+            background-color: #f1f9f9;
+        }
+
+        .button
+        {
+            position: relative;
+            top: 50%;
+            width: 74px;
+            height: 36px;
+            margin: 20px 8px 0 auto;
+            overflow: hidden;
+        }
+
+        .button.r, .button.r .layer
+        {
+            border-radius: 100px;
+        }
+
+        .button.b2
+        {
+            border-radius: 2px;
+        }
+
+
+        .checkbox
+        {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        /* Button 13 */
+        #button-13 .knobs:before, #button-13 .knobs:after, #button-13 .knobs span
+        {
+            position: absolute;
+            top: 4px;
+            width: 20px;
+            height: 10px;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+            padding: 9px 4px;
+            border-radius: 2px;
+            transition: 0.3s ease all;
+        }
+
+        #button-13 .knobs:before, #button-13 .knobs:after
+        {
+            color: #4e4e4e;
+            z-index: 1;
+        }
+
+        #button-13 .knobs:before
+        {
+            content: 'ZH';
+            left: 4px;
+        }
+
+        #button-13 .knobs:after
+        {
+            content: 'EN';
+            right: 4px;
+        }
+
+        #button-13 .knobs span
+        {
+            width: 32px;
+            height: 28px;
+            left: 37px;
+            z-index: 2;
+            background-color: #F44336;
+        }
+
+        #button-13 .checkbox:checked + .knobs span
+        {
+            left: 4px;
+            background-color: #03A9F4;
+        }
+
+        #button-13 .checkbox:checked ~ .layer
+        {
+            background-color: #fcebeb;
+        }
+    </style>
+</head>
+<body>
+<span class="hide lang_text J_T_text1" data-i18n="Home.Page.Account"></span>
+<span class="hide lang_text J_T_text2" data-i18n="Home.Page.Password"></span>
+<span class="hide lang_text J_T_text3" data-i18n="Home.Page.Message7"></span>
+<span class="hide lang_text J_T_text4" data-i18n="Home.Page.Login.failed"></span>
+<span class="hide lang_text J_T_text5" data-i18n="Home.Page.Prompt"></span>
+<span class="hide lang_text J_T_text6" data-i18n="Home.Page.Determine"></span>
+<span class="hide lang_text J_T_text7" data-i18n="Admin.User.PasswordIncorrect"></span>
+<div class="container">
+    <div class="login_text">
+        <img id="login_logo" src="images/logo.png" style="max-width: 600px; max-height: 300px; min-width:200px; min-height: 100px; width: auto; height: auto;">
+    </div>
+    <div class="login_line">
+        <div class="login_line_left"></div>
+        <div class="login_line_right"></div>
+    </div>
+    <div class="login_right">
+        <div class="login_box">
+            <div class="login_box_t"><font class="lang_text" data-i18n="Login.Page.WelcomeToLogin">欢迎登录</font></div>
+            <div class="form_group">
+                <div class="form_t">
+                    <img src="images/login/ico_u.png" class="form_icon fl">
+                    <span class="lang_text" data-i18n="Login.Page.Account">账号/工号</span>
+                </div>
+                <div class="form_b">
+                    <input id="input_username" type="text" class="J_name" name="name"/>
+                </div>
+                <div class="J_error error"></div>
+            </div>
+            <div class="form_group">
+                <div class="form_t">
+                    <img src="images/login/ico_p.png" class="form_icon fl">
+                    <span class="lang_text" data-i18n="Login.Page.Password">密码</span>
+                </div>
+                <div class="form_b">
+                    <input id="input_password" type="password" class="J_password" name="password"/>
+                </div>
+                <div id="j_error_pwd" class="J_error error"></div>
+
+                <div class="button b2" id="button-13">
+                    <input type="checkbox" class="checkbox meper-locale">
+                    <div class="knobs">
+                        <span></span>
+                    </div>
+                    <div class="layer"></div>
+                </div>
+            </div>
+            <div class="form_group">
+                <div id="btn_login" class="login_btn J_login lang_text" data-i18n="Login.Page.Login">登录</div>
+                <div class="login_btn_disabled J_login_btn_disabled"></div>
+                <input class="J_userLogin" type="hidden">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
