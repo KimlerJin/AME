@@ -1,7 +1,9 @@
 package com.ame.entity;
 
 
+import com.ame.hibernate.AMEEntityListener;
 import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import jdk.jfr.Description;
 
@@ -9,6 +11,7 @@ import jdk.jfr.Description;
 import java.time.ZonedDateTime;
 
 @MappedSuperclass
+@EntityListeners(AMEEntityListener.class)
 public abstract class BaseEntity extends Entity implements IBaseEntity {
 
     public static final String PLATFORM_ID = "platformId";
@@ -122,7 +125,7 @@ public abstract class BaseEntity extends Entity implements IBaseEntity {
     private String rowLogId;
 
     @Description("公有字段，表示该对象是否被删除，该字段会被系统自动放入，不允许用户修改。<p>0表示该数据存在，！=0表示删除。如果该数据删除，将会把DELETED置为该行数据ID的值。\n"
-        + "举例说明：新建一个user，名字叫‘张三’，deleted为0，id为16461354651335。如果把数据删除，则deleted的值变更为16461354651335\n</P>")
+            + "举例说明：新建一个user，名字叫‘张三’，deleted为0，id为16461354651335。如果把数据删除，则deleted的值变更为16461354651335\n</P>")
     @Column(name = "DELETED")
     private long deleted;
 

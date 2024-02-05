@@ -1,9 +1,6 @@
 package com.ame.config;
 
 import com.ame.dao.BaseDao;
-import com.ame.dao.UserAuthDao;
-import com.ame.dao.UserDao;
-import com.ame.hibernate.CommonsDataIntegrator;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
@@ -15,10 +12,7 @@ import org.springframework.context.annotation.Primary;
 @AutoConfigureBefore({DataSourceAutoConfiguration.class, LiquibaseAutoConfiguration.class})
 public class CommonsDataAutoConfiguration {
 
-    @Bean
-    public CommonsDataIntegrator commonsDataIntegrator() {
-        return new CommonsDataIntegrator();
-    }
+
 
     @Bean
     @Primary

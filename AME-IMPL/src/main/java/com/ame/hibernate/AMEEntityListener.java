@@ -2,15 +2,15 @@ package com.ame.hibernate;
 
 import com.ame.core.RequestInfo;
 import com.ame.entity.IBaseEntity;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.HibernateException;
-import org.hibernate.event.spi.SaveOrUpdateEvent;
-import org.hibernate.event.spi.SaveOrUpdateEventListener;
+
 
 import java.time.ZonedDateTime;
 import java.util.Map;
 
-public class EntityPreSavedListener implements SaveOrUpdateEventListener {
+public class AMEEntityListener {
 
     /**
      *
@@ -59,16 +59,44 @@ public class EntityPreSavedListener implements SaveOrUpdateEventListener {
 
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public void onSaveOrUpdate(SaveOrUpdateEvent event) throws HibernateException {
-        Object entity = event.getObject();
+    @PrePersist
+    public void prePersist(Object entity) {
         if (entity instanceof IBaseEntity) {
             setEntityProperties((IBaseEntity)entity);
         } else if (entity instanceof Map) {
 //            preCustomObjectSavedOrMerged((Map<String, Object>)entity);
         }
     }
+
+    @PreUpdate
+    public void preUpdate(Object entity) {
+        if (entity instanceof IBaseEntity) {
+            setPreUpdateEntityProperties((IBaseEntity)entity);
+        } else if (entity instanceof Map) {
+//            preCustomObjectSavedOrMerged((Map<String, Object>)entity);
+        }
+    }
+
+    public static void setPreUpdateEntityProperties(IBaseEntity baseEntity) {
+        baseEntity.setModifyBid(-1);
+        baseEntity.setRowLogId("-1");
+
+        RequestInfo current = RequestInfo.current();
+        if (current != null) {
+            baseEntity.setLastModifyUserId(current.getUserId());
+            baseEntity.setLastModifyUserName(current.getUserName());
+            baseEntity.setLastModifyUserFullName((current.getUserFirstName() == null ? "" : current.getUserFirstName())
+                    + (current.getUserLastName() == null ? "" : current.getUserLastName()));
+            baseEntity.setLastModifyIp(current.getUserIpAddress());
+            baseEntity.setLastModifyTime(current.getRequestZonedDateTime());
+        } else {
+            baseEntity.setLastModifyTime(ZonedDateTime.now());
+        }
+
+        // 判断current是否为空
+    }
+
+
 
 //    private void preCustomObjectSavedOrMerged(Map<String, Object> dynamicEntity) {
 //        dynamicEntity.put(DynamicEntityColumnName.DTS_MODIFIED_BID.getColumnName(), -1L);
