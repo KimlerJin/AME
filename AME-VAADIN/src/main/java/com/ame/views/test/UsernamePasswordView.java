@@ -32,6 +32,7 @@ public class UsernamePasswordView extends VerticalLayout {
 
         btn.addClickListener((ComponentEventListener<ClickEvent<Button>>) buttonClickEvent -> {
             UserEntity user = userService.getByName(tfUsername.getValue());
+//            userService.delete(user);
             if (user != null) {
                 user.setEmail("kimler_jin@amaxgs.com");
                 userService.save(user);

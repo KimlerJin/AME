@@ -4,13 +4,15 @@ package com.ame.entity;
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import jdk.jfr.Description;
+import org.hibernate.annotations.Where;
 import org.springframework.beans.BeanUtils;
 
 import java.time.ZonedDateTime;
 
 @Table(name = "SYS_USER")
 @Entity
-public class UserEntity extends BaseEntity{
+@Where(clause = "DELETED=0")
+public class UserEntity extends BaseEntity {
 
 
     public static final String NAME = "userName";
