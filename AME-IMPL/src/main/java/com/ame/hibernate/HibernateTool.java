@@ -41,6 +41,9 @@ public class HibernateTool {
     private int fetchSize = 0;
     private int maxResults = 0;
 
+    private static final ThreadLocal<Session> threadLocalSession = new ThreadLocal<>();
+
+
     public HibernateTool(EntityManager sessionFactory) {
         this.setSessionFactory(sessionFactory);
     }
@@ -63,8 +66,7 @@ public class HibernateTool {
         return executeWithNativeSession(session -> {
             if (lockMode != null) {
                 return session.get(entityClass, id, new LockOptions(lockMode));
-            }
-            else {
+            } else {
                 return session.get(entityClass, id);
             }
         });
@@ -76,6 +78,7 @@ public class HibernateTool {
             return null;
         });
     }
+
     protected final EntityManager obtainSessionFactory() {
         EntityManager sessionFactory = this.getSessionFactory();
         Assert.state(sessionFactory != null, "No SessionFactory set");
@@ -108,6 +111,7 @@ public class HibernateTool {
             if (lockMode != null) {
                 session.buildLockRequest(new LockOptions(lockMode)).lock(entity);
             }
+            boolean contains = session.contains(entity);
             session.delete(entity);
             return null;
         });
@@ -159,7 +163,11 @@ public class HibernateTool {
 
     protected <T> T doExecute(HibernateCallback<T> action, boolean enforceNativeSession) throws DataAccessException {
         Assert.notNull(action, "Callback object must not be null");
-        Session  session = this.obtainSessionFactory().unwrap(Session.class);
+        Session session = threadLocalSession.get();
+        if (session == null) {
+            session = this.obtainSessionFactory().unwrap(Session.class);
+            threadLocalSession.set(session);
+        }
         boolean isNew = false;
 
         T var19;

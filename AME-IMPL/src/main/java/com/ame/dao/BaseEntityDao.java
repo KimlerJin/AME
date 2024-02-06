@@ -84,7 +84,6 @@ public abstract class BaseEntityDao<T extends IBaseEntity> extends EntityDao<T> 
      */
     public void delete(T entityObject, String reason) {
         try {
-//            getHibernateTemplate().flush();
             if (isLogicDelete) {
                 RequestInfo current = RequestInfo.current();
                 if (current == null) {
@@ -112,14 +111,12 @@ public abstract class BaseEntityDao<T extends IBaseEntity> extends EntityDao<T> 
                 baseDao.merge(entityObject);
                 getHibernateTool().flush();
             } else {
-
                 baseDao.delete(entityObject);
                 getHibernateTool().flush();
             }
         } catch (DataAccessException e) {
             DataAccessExceptionUtils.processDataAccessException(e);
         }
-//        auditDao.log(entityClass, entityObject.getId(), CommonConstants.OPERATION_DELETE, null);
     }
 
     public void delete(List<T> entities) {

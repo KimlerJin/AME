@@ -8,6 +8,7 @@ import eu.bitwalker.useragentutils.BrowserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -76,6 +77,7 @@ public class JdbcTokenRepository implements TokenRepository {
     }
 
     @Override
+    @Transactional
     public void delete(TokenInfo tokenInfo) {
         UserAuthTokenEntity byToken = userAuthTokenService.getByToken(tokenInfo.getToken());
         if (byToken != null) {

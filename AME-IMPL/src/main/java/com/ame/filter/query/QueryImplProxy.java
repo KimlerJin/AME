@@ -6,6 +6,7 @@ import org.hibernate.CacheMode;
 import org.hibernate.Session;
 import org.hibernate.internal.SessionFactoryImpl;
 import org.hibernate.query.Query;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.TypeUtils;
 
 import java.util.*;
@@ -48,9 +49,7 @@ public class QueryImplProxy extends AbstractQueryProxy {
     public List list() {
         boolean cacheable = query.isCacheable();
         query.setCacheable(false);
-            return query.list();
-
-
+        return query.list();
     }
 
 

@@ -31,11 +31,16 @@ public class UsernamePasswordView extends VerticalLayout {
         add(tfUsername, tfPassword, btn);
 
         btn.addClickListener((ComponentEventListener<ClickEvent<Button>>) buttonClickEvent -> {
-            UserEntity user = new UserEntity();
-//            user.setId(100L);
-            user.setUserName(tfUsername.getValue());
-            user.setPassword(tfPassword.getValue());
-            userService.save(user);
+            UserEntity user = userService.getByName(tfUsername.getValue());
+            if (user != null) {
+                user.setEmail("kimler_jin@amaxgs.com");
+                userService.save(user);
+            } else {
+                user = new UserEntity();
+                user.setUserName(tfUsername.getValue());
+                user.setPassword(tfPassword.getValue());
+                userService.save(user);
+            }
         });
 
     }

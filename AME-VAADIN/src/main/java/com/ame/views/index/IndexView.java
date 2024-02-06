@@ -1,10 +1,11 @@
 package com.ame.views.index;
 
 import com.ame.base.BaseView;
+import com.ame.views.MainLayout;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.Route;
 
-@Route("index")
+@Route(value = "index", layout = MainLayout.class)
 public class IndexView extends BaseView {
 
 
