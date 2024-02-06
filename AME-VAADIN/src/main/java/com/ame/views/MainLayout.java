@@ -21,6 +21,8 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.menubar.MenuBarVariant;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
@@ -51,27 +53,29 @@ public class MainLayout extends AppLayout {
         Avatar avatar = new Avatar(RequestInfo.current().getUserName());
 //        avatar.setImage(pictureUrl);
 
+
         MenuBar menuBar = new MenuBar();
         menuBar.addThemeVariants(MenuBarVariant.LUMO_TERTIARY_INLINE);
-
+        HorizontalLayout hOuter = new HorizontalLayout();
+        hOuter.setWidthFull();
+        hOuter.add(menuBar);
+        hOuter.setPadding(true);
+        hOuter.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
         MenuItem menuItem = menuBar.addItem(avatar);
         SubMenu subMenu = menuItem.getSubMenu();
         subMenu.addItem("Profile");
         subMenu.addItem("Settings");
         subMenu.addItem("Help");
-        subMenu.addItem("Sign out", new ComponentEventListener<ClickEvent<MenuItem>>() {
-            @Override
-            public void onComponentEvent(ClickEvent<MenuItem> menuItemClickEvent) {
-                MenuItem source = menuItemClickEvent.getSource();
-                if (source != null) {
-                    SecurityUtils.getSubject().logout();
-                }
-
+        subMenu.addItem("Sign out", (ComponentEventListener<ClickEvent<MenuItem>>) menuItemClickEvent -> {
+            MenuItem source = menuItemClickEvent.getSource();
+            if (source != null) {
+                SecurityUtils.getSubject().logout();
             }
+
         });
 
 
-        addToNavbar(true, toggle, viewTitle, menuBar);
+        addToNavbar(true, toggle, viewTitle, hOuter);
     }
 
     private void addDrawerContent() {
