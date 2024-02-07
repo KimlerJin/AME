@@ -47,13 +47,9 @@ public class MainLayout extends AppLayout {
     private void addHeaderContent() {
         DrawerToggle toggle = new DrawerToggle();
         toggle.setAriaLabel("Menu toggle");
-
         viewTitle = new H2();
         viewTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
         Avatar avatar = new Avatar(RequestInfo.current().getUserName());
-//        avatar.setImage(pictureUrl);
-
-
         MenuBar menuBar = new MenuBar();
         menuBar.addThemeVariants(MenuBarVariant.LUMO_TERTIARY_INLINE);
         HorizontalLayout hOuter = new HorizontalLayout();
@@ -88,12 +84,12 @@ public class MainLayout extends AppLayout {
 
     private SideNav createNavigation() {
         SideNav nav = new SideNav();
-        nav.addItem(new SideNavItem("Hello World", HelloWorldView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
+        SideNavItem helloWorld = new SideNavItem("Hello World");
+        helloWorld.addItem(new SideNavItem("Upload", UploadTestView.class, LineAwesomeIcon.FILE.create()));
+        nav.addItem(helloWorld);
         nav.addItem(new SideNavItem("About", AboutView.class, LineAwesomeIcon.FILE.create()));
-        nav.addItem(new SideNavItem("Upload", UploadTestView.class, LineAwesomeIcon.FILE.create()));
         nav.addItem(new SideNavItem("UsernamePassword", UsernamePasswordView.class, LineAwesomeIcon.ADDRESS_BOOK.create()));
         nav.addItem(new SideNavItem("Index", IndexView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
-
         return nav;
     }
 
