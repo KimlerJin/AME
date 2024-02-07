@@ -28,6 +28,14 @@ public class MenuNodeService extends AbstractBaseEntityService<MenuNodeEntity> i
         return menuNodeDao;
     }
 
+
+    @Override
+    public List<MenuNodeEntity> listRootMenuNode() {
+        EntityFilter filter = createFilter();
+        filter.fieldLessThan(MenuNodeEntity.PARENT_ID, 1L);
+        return listByFilter(filter);
+    }
+
     @Override
     public List<MenuNodeEntity> listSubMenuNodesByParentId(Long parentId) {
         EntityFilter entityFilter = new EntityFilter(MenuNodeEntity.class);

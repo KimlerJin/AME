@@ -13,6 +13,7 @@ public interface IMenuNodeService extends IBaseEntityService<MenuNodeEntity> {
 
     MenuNodeEntity getMenuNodeByViewClass(String viewClass);
 
+    List<MenuNodeEntity> listRootMenuNode();
 
     List<MenuNodeEntity> listGroup(Boolean isGroup);
 }

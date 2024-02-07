@@ -5,6 +5,7 @@ import com.ame.core.RequestInfo;
 import com.ame.views.about.AboutView;
 import com.ame.views.helloworld.HelloWorldView;
 import com.ame.views.index.IndexView;
+import com.ame.views.node.MenuNodeSettingView;
 import com.ame.views.test.UsernamePasswordView;
 import com.ame.views.upload.UploadTestView;
 import com.vaadin.flow.component.ClickEvent;
@@ -90,6 +91,7 @@ public class MainLayout extends AppLayout {
         nav.addItem(new SideNavItem("About", AboutView.class, LineAwesomeIcon.FILE.create()));
         nav.addItem(new SideNavItem("UsernamePassword", UsernamePasswordView.class, LineAwesomeIcon.ADDRESS_BOOK.create()));
         nav.addItem(new SideNavItem("Index", IndexView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
+        nav.addItem(new SideNavItem("MenuNodeSettingView", MenuNodeSettingView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
         return nav;
     }
 
