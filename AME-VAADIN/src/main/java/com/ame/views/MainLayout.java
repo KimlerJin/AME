@@ -8,6 +8,7 @@ import com.ame.views.index.IndexView;
 import com.ame.views.node.MenuNodeSettingView;
 import com.ame.views.test.UsernamePasswordView;
 import com.ame.views.upload.UploadTestView;
+import com.ame.views.user.UserView;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.UI;
@@ -91,7 +92,8 @@ public class MainLayout extends AppLayout {
         nav.addItem(new SideNavItem("About", AboutView.class, LineAwesomeIcon.FILE.create()));
         nav.addItem(new SideNavItem("UsernamePassword", UsernamePasswordView.class, LineAwesomeIcon.ADDRESS_BOOK.create()));
         nav.addItem(new SideNavItem("Index", IndexView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
-        nav.addItem(new SideNavItem("MenuNodeSettingView", MenuNodeSettingView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
+        nav.addItem(new SideNavItem("UserView", UserView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
+
         return nav;
     }
 

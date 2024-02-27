@@ -7,6 +7,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -20,8 +21,8 @@ public class ConfirmDialog extends BaseComponent {
      */
     private static final long serialVersionUID = 7258320217829312645L;
 
-    public static String WIDTH = "400px";
-    public static String HEIGHT = "400px";
+    public static String WIDTH = "300px";
+    public static String HEIGHT = "200px";
 
     private DialogCallBack dialogCallBack = null;
 
@@ -35,13 +36,13 @@ public class ConfirmDialog extends BaseComponent {
         Icon icon = new Icon(VaadinIcon.QUESTION_CIRCLE_O);
         icon.setColor("red");
         icon.setSize("20px");
-        Label title = new Label( "Confirm");
-        title.getStyle().set("font-weight", "600").set("font-size", "16px");
+        Span title = new Span( "Confirm");
+//        title.getStyle().set("font-weight", "600").set("font-size", "16px");
         hlHeader.add(icon, title);
 
         VerticalLayout dialogContent = new VerticalLayout();
         dialogContent.setSizeFull();
-        dialogContent.add(new Label(message));
+        dialogContent.add(new Span(message));
 
         Button btnOK = new Button("OK");
         Button btnCancel = new Button("Cancel");
@@ -95,6 +96,7 @@ public class ConfirmDialog extends BaseComponent {
         ConfirmDialog dlg = new ConfirmDialog(message);
         dlg.addCallBackListener(callBack);
         Dialog dialog = new Dialog();
+//        dialog.setHeight(HEIGHT);
         dialog.setWidth(WIDTH);
         dialog.removeAll();
         dialog.add(dlg);
