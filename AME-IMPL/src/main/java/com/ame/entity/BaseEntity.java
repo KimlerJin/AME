@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import jdk.jfr.Description;
+import org.hibernate.annotations.CreationTimestamp;
 
 
 import java.time.ZonedDateTime;
