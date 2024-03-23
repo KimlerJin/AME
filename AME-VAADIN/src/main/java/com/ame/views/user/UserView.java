@@ -4,6 +4,7 @@ import com.ame.base.BaseView;
 import com.ame.base.ConfirmDialog;
 import com.ame.base.ConfirmResult;
 import com.ame.base.DialogCallBack;
+import com.ame.core.RequestInfo;
 import com.ame.entity.UserEntity;
 import com.ame.service.IUserService;
 import com.ame.views.MainLayout;
@@ -16,9 +17,12 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
+import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Route(value = "user", layout = MainLayout.class)
@@ -49,6 +53,15 @@ public class UserView extends BaseView {
         grid.addColumn(UserEntity::getUserName).setHeader("用户名");
         grid.addColumn(UserEntity::getStatus).setHeader("状态");
         grid.addColumn(UserEntity::getCreateUserName).setHeader("创建人");
+        grid.addColumn(new ValueProvider<UserEntity, String>() {
+            @Override
+            public String apply(UserEntity userEntity) {
+                ZonedDateTime createTime = userEntity.getCreateTime();
+                String format = createTime.withZoneSameInstant(RequestInfo.current().getUserZoneId()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+//                String format = createTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                return format;
+            }
+        }).setHeader("创建时间");
         grid.addColumn(
                 new ComponentRenderer<>(HorizontalLayout::new, (horizontalLayout, person) -> {
                     Button btnDelete = new Button();

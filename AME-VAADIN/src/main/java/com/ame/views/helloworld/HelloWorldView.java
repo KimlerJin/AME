@@ -3,12 +3,14 @@ package com.ame.views.helloworld;
 
 import com.ame.base.BaseView;
 import com.ame.views.MainLayout;
+import com.ame.websocket.WebSocketServer;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
+
+import java.io.IOException;
 
 @Route(value = "hello", layout = MainLayout.class)
 public class HelloWorldView extends BaseView {
@@ -16,11 +18,17 @@ public class HelloWorldView extends BaseView {
     private TextField name;
     private Button sayHello;
 
+
+
     public HelloWorldView() {
         name = new TextField("Your name");
         sayHello = new Button("Say hello");
         sayHello.addClickListener(e -> {
-            notificationInfo("", "错误错误！！！");
+            try {
+                WebSocketServer.BroadCastInfo("hello world");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
         sayHello.addClickShortcut(Key.ENTER);
 

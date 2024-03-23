@@ -61,9 +61,10 @@ public class ShiroConfig {
         chainDefinition.addPathDefinition("/login", "requestInfo");
         chainDefinition.addPathDefinition("/offline-stub.html", "anon");
         chainDefinition.addPathDefinition("/**/*.js", "anon");
+        chainDefinition.addPathDefinition("/**/*.js", "anon");
         chainDefinition.addPathDefinition("/**/*.css", "anon");
         chainDefinition.addPathDefinition("/**/*.png", "anon");
-        chainDefinition.addPathDefinition("/**/*.jpg", "anon");
+        chainDefinition.addPathDefinition("/ws/**", "requestInfo");
         chainDefinition.addPathDefinition("/static/**", "requestInfo");
         chainDefinition.addPathDefinition("/rest/security/**", "requestInfo");
         chainDefinition.addPathDefinition("/VAADIN/push", "anon");

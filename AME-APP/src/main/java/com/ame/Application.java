@@ -21,6 +21,7 @@ import java.util.TimeZone;
 public class Application implements AppShellConfigurator {
 
     public static void main(String[] args) {
+        System.setProperty("user.timezone", "Asia/Shanghai");
         SpringApplication.run(Application.class, args);
     }
 

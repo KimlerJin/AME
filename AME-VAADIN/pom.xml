@@ -89,6 +89,10 @@
             <groupId>eu.bitwalker</groupId>
             <artifactId>UserAgentUtils</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.ame</groupId>
+            <artifactId>AME-REST</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

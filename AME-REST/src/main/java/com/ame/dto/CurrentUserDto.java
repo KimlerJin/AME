@@ -1,11 +1,13 @@
 package com.ame.dto;
 
+import java.io.Serializable;
+
 /**
  * Author:Tracy
  * Date:2020/11/11
  * Description:
  */
-public class CurrentUserDto {
+public class CurrentUserDto implements Serializable {
     private String name;
 
     private String employeeNo;
