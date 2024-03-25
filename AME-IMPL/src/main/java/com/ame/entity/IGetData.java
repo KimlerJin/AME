@@ -1,6 +1,6 @@
 package com.ame.entity;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 public interface IGetData extends IData {
 
@@ -12,7 +12,7 @@ public interface IGetData extends IData {
 
     void setDescription(String description);
 
-    ZonedDateTime getCreateTime();
+    LocalDateTime getCreateTime();
 
     long getCreateUserId();
 
@@ -33,7 +33,7 @@ public interface IGetData extends IData {
      */
     long getCreateBid();
 
-    ZonedDateTime getLastModifyTime();
+    LocalDateTime getLastModifyTime();
 
     long getLastModifyUserId();
 
@@ -47,7 +47,7 @@ public interface IGetData extends IData {
 
     String getLastModifyIp();
 
-    ZonedDateTime getDeleteTime();
+    LocalDateTime getDeleteTime();
 
     long getDeleteUserId();
 

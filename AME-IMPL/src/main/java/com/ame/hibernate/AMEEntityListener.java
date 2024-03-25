@@ -7,6 +7,7 @@ import jakarta.persistence.PreUpdate;
 import org.apache.commons.lang3.StringUtils;
 
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Map;
 
@@ -32,7 +33,7 @@ public class AMEEntityListener {
                     + (current.getUserLastName() == null ? "" : current.getUserLastName()));
             }
             if (baseEntity.getCreateTime() == null) {
-                baseEntity.setCreateTime(current.getRequestZonedDateTime());
+                baseEntity.setCreateTime(LocalDateTime.now());
             }
             if (baseEntity.getLastModifyUserId() <= 0) {
                 baseEntity.setLastModifyUserId(current.getUserId());
@@ -42,13 +43,13 @@ public class AMEEntityListener {
                         + (current.getUserLastName() == null ? "" : current.getUserLastName()));
             }
             if (baseEntity.getLastModifyTime() == null) {
-                baseEntity.setLastModifyTime(current.getRequestZonedDateTime());
+                baseEntity.setLastModifyTime(LocalDateTime.now());
             }
             if (StringUtils.isNotEmpty(baseEntity.getDataPermissionPredicate())) {
                 baseEntity.setDataPermissionPredicate(current.getDataPermissionCode());
             }
         } else {
-            ZonedDateTime now = ZonedDateTime.now();
+            LocalDateTime now = LocalDateTime.now();
             if (baseEntity.getCreateTime() == null) {
                 baseEntity.setCreateTime(now);
             }
@@ -88,9 +89,9 @@ public class AMEEntityListener {
             baseEntity.setLastModifyUserFullName((current.getUserFirstName() == null ? "" : current.getUserFirstName())
                     + (current.getUserLastName() == null ? "" : current.getUserLastName()));
             baseEntity.setLastModifyIp(current.getUserIpAddress());
-            baseEntity.setLastModifyTime(current.getRequestZonedDateTime());
+            baseEntity.setLastModifyTime(LocalDateTime.now());
         } else {
-            baseEntity.setLastModifyTime(ZonedDateTime.now());
+            baseEntity.setLastModifyTime(LocalDateTime.now());
         }
 
         // 判断current是否为空

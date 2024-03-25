@@ -6,10 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import jdk.jfr.Description;
-import org.hibernate.annotations.CreationTimestamp;
-
-
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 @EntityListeners(AMEEntityListener.class)
@@ -55,7 +52,7 @@ public abstract class BaseEntity extends Entity implements IBaseEntity {
 
     @Description("公有字段，表示对象的创建时间，该字段会被系统自动放入，不允许用户修改。")
     @Column(name = "CREATE_TIME")
-    private ZonedDateTime createTime;
+    private LocalDateTime createTime;
 
     @Description("公有字段，表示对象的创建用户的ID，该字段会被系统自动放入，不允许用户修改。")
     @Column(name = "CREATE_USER_ID")
@@ -79,7 +76,7 @@ public abstract class BaseEntity extends Entity implements IBaseEntity {
 
     @Description("公有字段，表示对象上一次修改时的时间，该字段会被系统自动放入，不允许用户修改。")
     @Column(name = "LM_TIME")
-    private ZonedDateTime lastModifyTime;
+    private LocalDateTime lastModifyTime;
 
     @Description("公有字段，表示对象的上次修改时的用户的ID，该字段会被系统自动放入，不允许用户修改。")
     @Column(name = "LM_USER_ID")
@@ -103,7 +100,7 @@ public abstract class BaseEntity extends Entity implements IBaseEntity {
 
     @Description("公有字段，表示对象被删除时的时间，该字段会被系统自动放入，不允许用户修改。")
     @Column(name = "DELETE_TIME")
-    private ZonedDateTime deleteTime;
+    private LocalDateTime deleteTime;
 
     @Description("公有字段，表示对象被删除用户的ID，该字段会被系统自动放入，不允许用户修改。")
     @Column(name = "DELETE_USER_ID")
@@ -174,12 +171,12 @@ public abstract class BaseEntity extends Entity implements IBaseEntity {
     }
 
     @Override
-    public ZonedDateTime getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
     @Override
-    public void setCreateTime(ZonedDateTime createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 
@@ -234,12 +231,12 @@ public abstract class BaseEntity extends Entity implements IBaseEntity {
     }
 
     @Override
-    public ZonedDateTime getLastModifyTime() {
+    public LocalDateTime getLastModifyTime() {
         return lastModifyTime;
     }
 
     @Override
-    public void setLastModifyTime(ZonedDateTime lastModifyTime) {
+    public void setLastModifyTime(LocalDateTime lastModifyTime) {
         this.lastModifyTime = lastModifyTime;
     }
 
@@ -294,12 +291,12 @@ public abstract class BaseEntity extends Entity implements IBaseEntity {
     }
 
     @Override
-    public ZonedDateTime getDeleteTime() {
+    public LocalDateTime getDeleteTime() {
         return deleteTime;
     }
 
     @Override
-    public void setDeleteTime(ZonedDateTime deleteTime) {
+    public void setDeleteTime(LocalDateTime deleteTime) {
         this.deleteTime = deleteTime;
     }
 

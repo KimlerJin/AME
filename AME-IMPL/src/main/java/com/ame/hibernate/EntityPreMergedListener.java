@@ -8,6 +8,7 @@ import org.hibernate.event.spi.MergeContext;
 import org.hibernate.event.spi.MergeEvent;
 import org.hibernate.event.spi.MergeEventListener;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Map;
 
@@ -26,9 +27,9 @@ public class EntityPreMergedListener implements MergeEventListener {
             baseEntity.setLastModifyUserFullName((current.getUserFirstName() == null ? "" : current.getUserFirstName())
                 + (current.getUserLastName() == null ? "" : current.getUserLastName()));
             baseEntity.setLastModifyIp(current.getUserIpAddress());
-            baseEntity.setLastModifyTime(current.getRequestZonedDateTime());
+            baseEntity.setLastModifyTime(LocalDateTime.now());
         } else {
-            baseEntity.setLastModifyTime(ZonedDateTime.now());
+            baseEntity.setLastModifyTime(LocalDateTime.now());
         }
 
         // 判断current是否为空

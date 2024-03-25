@@ -3,15 +3,12 @@ package com.ame.views;
 
 import com.ame.core.RequestInfo;
 import com.ame.views.about.AboutView;
-import com.ame.views.helloworld.HelloWorldView;
 import com.ame.views.index.IndexView;
-import com.ame.views.node.MenuNodeSettingView;
 import com.ame.views.test.UsernamePasswordView;
 import com.ame.views.upload.UploadTestView;
 import com.ame.views.user.UserView;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;

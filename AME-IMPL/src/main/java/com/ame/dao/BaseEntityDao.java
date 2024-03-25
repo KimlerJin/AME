@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -101,7 +102,7 @@ public abstract class BaseEntityDao<T extends IBaseEntity> extends EntityDao<T> 
                 }
                 entityObject.setDeleted(true);
                 entityObject.setDeleteIp(RequestInfo.current().getUserIpAddress());
-                entityObject.setDeleteTime(RequestInfo.current().getRequestZonedDateTime());
+                entityObject.setDeleteTime(LocalDateTime.now());
                 entityObject.setDeleteUserId(RequestInfo.current().getUserId());
                 entityObject.setDeleteUserName(RequestInfo.current().getUserName());
                 entityObject.setDeleteUserFullName(
@@ -140,7 +141,7 @@ public abstract class BaseEntityDao<T extends IBaseEntity> extends EntityDao<T> 
                         if (isLogicDelete) {
                             entityObject.setDeleted(true);
                             entityObject.setDeleteIp(RequestInfo.current().getUserIpAddress());
-                            entityObject.setDeleteTime(RequestInfo.current().getRequestZonedDateTime());
+                            entityObject.setDeleteTime(LocalDateTime.now());
                             entityObject.setDeleteUserId(RequestInfo.current().getUserId());
                             entityObject.setDeleteUserName(RequestInfo.current().getUserName());
                             entityObject.setDeleteUserFullName((RequestInfo.current().getUserFirstName() == null ? " "

@@ -1,6 +1,7 @@
 package com.ame.entity;
 
-import java.time.ZonedDateTime;
+
+import java.time.LocalDateTime;
 
 public interface IBaseEntity extends ISetDataId, IGetData {
 
@@ -8,7 +9,7 @@ public interface IBaseEntity extends ISetDataId, IGetData {
 
     void setPlatformId(String platformId);
 
-    void setCreateTime(ZonedDateTime createTime);
+    void setCreateTime(LocalDateTime createTime);
 
     void setCreateUserId(long createUserId);
 
@@ -27,7 +28,7 @@ public interface IBaseEntity extends ISetDataId, IGetData {
      */
     void setCreateBid(long creationBid);
 
-    void setLastModifyTime(ZonedDateTime lastModifyTime);
+    void setLastModifyTime(LocalDateTime lastModifyTime);
 
     void setLastModifyUserId(long lastModifyUserId);
 
@@ -41,7 +42,7 @@ public interface IBaseEntity extends ISetDataId, IGetData {
 
     void setLastModifyIp(String lastModifyIp);
 
-    void setDeleteTime(ZonedDateTime deleteTime);
+    void setDeleteTime(LocalDateTime deleteTime);
 
     void setDeleteUserId(long deleteUserId);
 

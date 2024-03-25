@@ -21,6 +21,7 @@ import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -56,9 +57,8 @@ public class UserView extends BaseView {
         grid.addColumn(new ValueProvider<UserEntity, String>() {
             @Override
             public String apply(UserEntity userEntity) {
-                ZonedDateTime createTime = userEntity.getCreateTime();
-                String format = createTime.withZoneSameInstant(RequestInfo.current().getUserZoneId()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-//                String format = createTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                LocalDateTime createTime = userEntity.getCreateTime();
+                String format = createTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
                 return format;
             }
         }).setHeader("创建时间");
